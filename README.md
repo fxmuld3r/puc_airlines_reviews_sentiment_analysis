@@ -130,4 +130,14 @@ Consultar API com avaliações negativas (porta 5002), como exemplos:
 - http://127.0.0.1:5002/negatives-reviews?selected_airline=TurkishFly
 - http://127.0.0.1:5002/negatives-reviews?selected_airline=TurkishFly&fligth_date=2022-07-25
 - http://127.0.0.1:5002/negatives-reviews?selected_airline=TurkishFly&flight_date=2022-07-25
-___
+### 7) Visualizar Avaliações Negativas de Voos em Dashboard via Apache Superset
+#### 7.1) Iniciar o Apache Superset
+```sh
+~/Superset$export FLASK_APP=superset
+~/Superset$export SUPERSET_SECRET_KEY="?????"
+~/Superset$superset db upgrade
+~/Superset$superset run -p 8088 --with-threads --reload --debugger
+Configure a chama ao Pinot: pinot+http://localhost:8000/query?server=http://localhost:9000/
+```
+
+
