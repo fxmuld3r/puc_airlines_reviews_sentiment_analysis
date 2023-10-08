@@ -118,43 +118,4 @@ Quando acionado, o módulo consome os dados do tópico Kafka "airlines-reviews-s
 ```sh
 ~/puc_airlines_reviews_sentiment_analysis/streaming$ python3 airlines_reviews_streaming_sentiment_analysis_ingestion.py
 ```
-<br />
-#### 5.3) Consultar Análise Avaliações Negativas no MongoDB
-Utilizar Studio 3T ou similar (client MongoDB) para consultar mensagens negativas armazenadas.
-<br />
-### 6) Disponibilizar Avaliações Negativas de Voos em API
-Iniciar API que fornece dados de Avaliações Negativas:
-```sh
-~/puc_airlines_reviews_sentiment_analysis/api$ python3 airlines_reviews_negatives_api.py
-```
-Consultar API com avaliações negativas (porta 5002), como exemplos:
-http://127.0.0.1:5002/negatives-reviews?selected_airline=TurkishFly
-http://127.0.0.1:5002/negatives-reviews?selected_airline=TurkishFly&fligth_date=2022-07-25
-http://127.0.0.1:5002/negatives-reviews?selected_airline=TurkishFly&flight_date=2022-07-25
-<br />
-### 7) Visualizar Avaliações Negativas de Voos em Dashboard via Apache Superset
-#### 7.1) Iniciar o Apache Superset
-```sh
-~/Superset$export FLASK_APP=superset
-~/Superset$export SUPERSET_SECRET_KEY="?????"
-~/Superset$superset db upgrade
-~/Superset$superset run -p 8088 --with-threads --reload --debugger
-Configure a chama ao Pinot: pinot+http://localhost:8000/query?server=http://localhost:9000/
-```
-#### 7.2) Consultar Estatísticas de Avaliações em Dashboad no Apache Superset
-Acione o endereço da aplicação:
-```sh
-http://localhost:8088/superset/welcome/
-```
-Elabore Dashboards com gráficos sob demanda
-___
-___
-### 8) Extração de Avaliações de Vôos para arquivo no Formato Parquet
-Iniciar o Apache Airflow para agendamento de processos:
-```sh
-airflow webserver -p 8080
-airflow schedule
-http://localhost:8080/home
-```
-Acionar serviço agendado através do arquivo ([dag_airlines_reviews_batch_extraction_sentiment_analysis.py](https://github.com/fxmuld3r/puc_airlines_reviews_sentiment_analysis/blob/main/dag_airlines_reviews_batch_extraction_sentiment_analysis.py)) de DAG criado.
-<br />
+
