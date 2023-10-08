@@ -40,9 +40,10 @@ Para executar o projeto, é necessário instalar as ferramentas listadas na seç
 
 ## Arquivo de Dados com Massa de Testes
 [Massa de Dados](https://github.com/fxmuld3r/puc_airlines_reviews_sentiment_analysis/tree/main/puc_airlines_reviews_sentiment_analysis/mock/data)
-
+<br />
 ## Passo a Passo de Execução do Projeto
 Seguem os passos para execução do projeto em ambiente Linux:
+<br />
 ### 1) Iniciar e Configurar Ferramentas de Ingestão de Dados
 #### 1.1) Iniciar Apache Pinot com Zookeper
 Iniciar o Apache Pinot (o zookeper é carregado automaticamente):
@@ -62,6 +63,7 @@ Incluir [Realtime Tables](http://localhost:9000/#/tables) via interface web do P
 - AirlinesReviewsKafkaTopic para o tópico "airlines-reviews-kafka-topic";
 - AirlinesReviewsTransformatedKafkaTopic para o tópico "airlines-reviews-transformed-kafka-topic";
 - AirlinesReviewsSentimentAnalisysKafkaTopic para o tópico "airlines-reviews-sentiment-analysis-kafka-topic";
+- <br />
 ### 2) Ingestão de Dados
 #### 2.1) Executar API de Mock de Dados de Testes  (porta 5000)
 Quando acionada a API realiza a leitura de dados do arquivo de massa de dados (CSV) e aciona a API de Ingestão de Dados:
@@ -80,6 +82,7 @@ O sheduler aciona a API de mock de dados para acionar a API de Ingestão:
 ```
 #### 2.4) Consultar Dados Ingeridos de Avaliações de Viagens no Apache Pinot
 http://localhost:9000/#/query?query=select+*+from+AirlinesReviewsKafkaTopic+limit+10&tracing=false&useMSE=false
+<br />
 ### 3) Transformação de Dados
 #### 3.1) Executar Módulo Spark Streaming de Transformação de Dados
 Quando acionado, o módulo realiza as seguintes ações nos textos das Avaliações de Voos (armazenando no tópico "airlines-reviews-transformed-kafka-topic"):
@@ -95,6 +98,7 @@ pública do Google Translate.
 ```
 #### 3.2) Consultar Avaliações de Voos Transformadas no Apache Pinot
 http://localhost:9000/#/query?query=select+*+from+AirlinesReviewsTransformatedKafkaTopic+limit+10&tracing=false&useMSE=false
+<br />
 ### 4) Análise de Sentimento (Machine Learning)
 #### 4.1) Executar Módulo Spark Streaming para Análise de Sentimentos das Avaliações de Voos
 Quando acionado, o módulo realiza o processamento de linguagem natural através de processo de Machine Learning. O resultado com análise de polaridade e subjetividade são armazenandos no tópico "airlines-reviews-sentiment-analysis-kafka-topic" em formato JSON:
@@ -103,7 +107,7 @@ Quando acionado, o módulo realiza o processamento de linguagem natural através
 ```
 #### 4.2) Consultar Análise de Sentimentos em Avaliações de Voos no Apache Pinot
 http://localhost:9000/#/query?query=select+*+from+AirlinesReviewsSentimentAnalisysKafkaTopic+limit+10&tracing=false&useMSE=false
-
+<br />
 ### 5) Armazenamento de Avaliações Negativas de Voos em Banco de Dados NOSQL
 #### 5.1) Executar MongoDB no Docker
 ```sh
@@ -114,5 +118,33 @@ Quando acionado, o módulo consome os dados do tópico Kafka "airlines-reviews-s
 ```sh
 ~/puc_airlines_reviews_sentiment_analysis/streaming$ python3 airlines_reviews_streaming_sentiment_analysis_ingestion.py
 ```
-#### 5.3) Consultar Análise de Sentimentos em Avaliações de Voos no Apache Pinot
-http://localhost:9000/#/query?query=select+*+from+AirlinesReviewsSentimentAnalisysKafkaTopic+limit+10&tracing=false&useMSE=false
+<br />
+#### 5.3) Consultar Análise Avaliações Negativas no MongoDB
+Utilizar Studio 3T ou similar (client MongoDB) para consultar mensagens negativas armazenadas.
+<br />
+### 6) Disponibilizar Avaliações Negativas de Voos em API
+Iniciar API que fornece dados de Avaliações Negativas:
+```sh
+~/puc_airlines_reviews_sentiment_analysis/api$ python3 airlines_reviews_negatives_api.py
+```
+Consultar API com avaliações negativas (porta 5002), como exemplos:
+http://127.0.0.1:5002/negatives-reviews?selected_airline=TurkishFly
+http://127.0.0.1:5002/negatives-reviews?selected_airline=TurkishFly&fligth_date=2022-07-25
+http://127.0.0.1:5002/negatives-reviews?selected_airline=TurkishFly&flight_date=2022-07-25
+<br />
+### 7) Visualizar Avaliações Negativas de Voos em Dashboard via Apache Superset
+#### 7.1) Iniciar o Apache Superset
+```sh
+~/Superset$export FLASK_APP=superset
+~/Superset$export SUPERSET_SECRET_KEY="?????"
+~/Superset$superset db upgrade
+~/Superset$superset run -p 8088 --with-threads --reload --debugger
+Configure a chama ao Pinot: pinot+http://localhost:8000/query?server=http://localhost:9000/
+```
+#### 7.2) Consultar Estatísticas de Avaliações em Dashboad no Apache Superset
+Acione o endereço da aplicação:
+```sh
+http://localhost:8088/superset/welcome/
+```
+Elabore Dashboard com gráficos sob demanda
+<br />
