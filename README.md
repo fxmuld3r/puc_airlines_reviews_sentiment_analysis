@@ -118,4 +118,5 @@ Quando acionado, o módulo consome os dados do tópico Kafka "airlines-reviews-s
 ```sh
 ~/puc_airlines_reviews_sentiment_analysis/streaming$ python3 airlines_reviews_streaming_sentiment_analysis_ingestion.py
 ```
-
+#### 5.3) Consultar Análise Avaliações Negativas no MongoDB
+Utilizar Studio 3T ou similar (client MongoDB) para consultar mensagens negativas armazenadas.
