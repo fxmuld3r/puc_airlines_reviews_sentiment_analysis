@@ -1,0 +1,121 @@
+{
+  "dimensionFieldSpecs": [
+    {
+      "dataType": "STRING",
+      "name": "col_index"
+    },
+    {
+      "dataType": "STRING",
+      "name": "departure_city"
+    },
+    {
+      "dataType": "STRING",
+      "name": "airline"
+    },
+    {
+      "dataType": "STRING",
+      "name": "customer_review_original_language"
+    },
+    {
+      "dataType": "STRING",
+      "name": "language"
+    }
+  ],
+  "dateTimeFieldSpecs": [
+    {
+      "name": "flight_date",
+      "dataType": "STRING",
+      "format": "1:MILLISECONDS:SIMPLE_DATE_FORMAT:yyyy-MM-dd HH:mm:ss.SSSSSS",
+      "granularity": "1:MILLISECONDS"
+    }
+  ],
+  "schemaName": "AirlinesReviewsKafkaTopic"
+}
+
+{
+  "dimensionFieldSpecs": [
+    {
+      "dataType": "STRING",
+      "name": "col_index"
+    },
+    {
+      "dataType": "STRING",
+      "name": "departure_city"
+    },
+    {
+      "dataType": "STRING",
+      "name": "airline"
+    },
+    {
+      "dataType": "STRING",
+      "name": "customer_review_original_language"
+    },
+    {
+      "dataType": "STRING",
+      "name": "language"
+    },
+    {
+      "dataType": "STRING",
+      "name": "text_translated"
+    }
+  ],
+  "dateTimeFieldSpecs": [
+    {
+      "name": "flight_date",
+      "dataType": "STRING",
+      "format": "1:MILLISECONDS:SIMPLE_DATE_FORMAT:yyyy-MM-dd HH:mm:ss.SSSSSS",
+      "granularity": "1:MILLISECONDS"
+    }
+  ],
+  "schemaName": "AirlinesReviewsTransformatedKafkaTopic"
+}
+
+{
+  "dimensionFieldSpecs": [
+    {
+      "dataType": "STRING",
+      "name": "col_index"
+    },
+    {
+      "dataType": "STRING",
+      "name": "departure_city"
+    },
+    {
+      "dataType": "STRING",
+      "name": "airline"
+    },
+    {
+      "dataType": "STRING",
+      "name": "customer_review_original_language"
+    },
+    {
+      "dataType": "STRING",
+      "name": "language"
+    },
+    {
+      "dataType": "STRING",
+      "name": "text_translated"
+    },
+    {
+      "dataType": "STRING",
+      "name": "polarity"
+    },
+    {
+      "dataType": "STRING",
+      "name": "subjectivity"
+    },
+    {
+      "dataType": "STRING",
+      "name": "sentiment_result"
+    }
+  ],
+  "dateTimeFieldSpecs": [
+    {
+      "name": "flight_date",
+      "dataType": "STRING",
+      "format": "1:MILLISECONDS:SIMPLE_DATE_FORMAT:yyyy-MM-dd HH:mm:ss.SSSSSS",
+      "granularity": "1:MILLISECONDS"
+    }
+  ],
+  "schemaName": "AirlinesReviewsSentimentAnalisysKafkaTopic"
+}
