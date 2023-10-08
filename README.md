@@ -14,6 +14,9 @@ Construção de um fluxo de processamento contínuo de mensagens postadas em div
 ## Apresentação em Vídeo
 [Apresentação no YouTube (5 minutos de vídeo)](https://www.youtube.com/watch?v=KXtxDYEkhag)
 
+## Diagrama de Arquitetura
+[Arquivo em formato PNG](https://github.com/fxmuld3r/puc_airlines_reviews_sentiment_analysis/blob/main/PUC-EngenhariaDeDadosAirlineReviews.drawio.png)
+
 ## Bibliotecas Utilizadas
 [Requirements.txt](https://www.youtube.com/watch?v=KXtxDYEkhag)
 
@@ -21,7 +24,7 @@ Construção de um fluxo de processamento contínuo de mensagens postadas em div
 - Apache Airflow 2.1.0;
 - Apache Kafka;
 - Apache Parquet;
-- Apache Pinot 5.1.0;
+- Apache Pinot 0.12.0;
 - Apache Spark 3.4.1;
 - Apache Spark Streaming 3.4.1;
 - Apache Superset;
@@ -32,5 +35,16 @@ Construção de um fluxo de processamento contínuo de mensagens postadas em div
 - Python 3.10.9;
 - TextBlob 0.17.1;
 
+## Instalação
+Para executar o projeto, é necessário instalar as ferramentas listadas na seção acima, conforme versões detalhadas.
+
 ## Arquivo de Dados com Massa de Testes
 [Massa de Dados](https://github.com/fxmuld3r/puc_airlines_reviews_sentiment_analysis/tree/main/puc_airlines_reviews_sentiment_analysis/mock/data)
+
+## Execução do Projeto
+
+### Apache Pinot com Zookeper
+```sh
+Rodar Apache Pinot (o zookeper automaticamente):
+~/apache-pinot-0.12.0-bin$ bin/quick-start-streaming.sh
+```
