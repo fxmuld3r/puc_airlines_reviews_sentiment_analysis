@@ -146,5 +146,15 @@ Acione o endereço da aplicação:
 ```sh
 http://localhost:8088/superset/welcome/
 ```
-Elabore Dashboard com gráficos sob demanda
+Elabore Dashboards com gráficos sob demanda
+___
+___
+### 8) Extração de Avaliações de Vôos para arquivo no Formato Parquet
+Iniciar o Apache Airflow para agendamento de processos:
+```sh
+airflow webserver -p 8080
+airflow schedule
+http://localhost:8080/home
+```
+Acionar serviço agendado através do arquivo ([dag_airlines_reviews_batch_extraction_sentiment_analysis.py](https://github.com/fxmuld3r/puc_airlines_reviews_sentiment_analysis/blob/main/dag_airlines_reviews_batch_extraction_sentiment_analysis.py)) de DAG criado.
 <br />
