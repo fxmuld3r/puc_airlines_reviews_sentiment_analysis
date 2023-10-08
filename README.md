@@ -120,3 +120,6 @@ Quando acionado, o módulo consome os dados do tópico Kafka "airlines-reviews-s
 ```
 #### 5.3) Consultar Análise Avaliações Negativas no MongoDB
 Utilizar Studio 3T ou similar (client MongoDB) para consultar mensagens negativas armazenadas.
+<br />
+### 6) Disponibilizar Avaliações Negativas de Voos em API
+Iniciar API que fornece dados de Avaliações Negativas:
