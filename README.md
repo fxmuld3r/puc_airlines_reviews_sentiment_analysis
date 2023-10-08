@@ -50,7 +50,7 @@ Iniciar o Apache Pinot (o zookeper é carregado automaticamente):
 ```sh
 ~/apache-pinot-0.12.0-bin$ bin/quick-start-streaming.sh
 ```
-A interface do Pinot pode ser acessa através do link:  http://localhost:9000
+A interface do Pinot pode ser acessada através do link:  http://localhost:9000
 
 #### 1.2) Iniciar Apache Kafka no Pinot
 Iniciar o Apache Kafka (com porta personalizada 9876) embutido no Apache Pinot
