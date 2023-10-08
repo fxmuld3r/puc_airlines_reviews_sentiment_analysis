@@ -58,7 +58,23 @@ Iniciar o Apache Kafka (com porta personalizada 9876) embutido no Apache Pinot
 ### 3) Incluir Schemas e Tabelas no Apache Pinot
 Utilizar a [API do Pinot](http://localhost:9000/help) para incluir [Schemas do Pinot](https://github.com/fxmuld3r/puc_airlines_reviews_sentiment_analysis/blob/main/puc_airlines_reviews_sentiment_analysis/settings/schemas_pinot.txt) de dados referentes às mensagens que serão armazenadas nos tópicos Kafka 
 Incluir [Realtime Tables](http://localhost:9000/#/tables) via interface web do Pinot apontadas para o broker "localhost:9876", com os seguintes nomes:
-- AirlinesReviewsKafkaTopic para o tópico "airlines-reviews-kafka-topic'";
+- AirlinesReviewsKafkaTopic para o tópico "airlines-reviews-kafka-topic";
 - AirlinesReviewsTransformatedKafkaTopic para o tópico "airlines-reviews-transformed-kafka-topic";
 - AirlinesReviewsSentimentAnalisysKafkaTopic para o tópico "airlines-reviews-sentiment-analysis-kafka-topic'";
-
+### 4) Executar API de Mock de Dados de Testes  (porta 5000)
+Quando acionada a API realiza a leitura de dados do arquivo de massa de dados (CSV) e aciona a API de Ingestão de Dados:
+```sh
+~/puc_airlines_reviews_sentiment_analysis/mock$ python3 airlines_reviews_api_data_mock.py
+```
+### 5) Executar API de Ingestão de Avaliações de Viagens  (porta 5001)
+Quando acionada, a API recepciona Avaliações de Viagens e armazena (JSON) as mensagens no tópico Kafka "airlines-reviews-kafka-topic":
+```sh
+~/puc_airlines_reviews_sentiment_analysis/api$ python3 airlines_reviews_api_data_ingestion.py
+```
+### 6) Executar Scheduler para Mock de Dados de Testes
+O sheduler aciona a API de mock de dados para acionar a API de Ingestão:
+```sh
+~/puc_airlines_reviews_sentiment_analysis/mock$ python3 airlines_reviews_mock_scheduler.py
+```
+### 7) Consultar Dados Ingeridos de Avaliações de Viagens no Apache Pinot
+http://localhost:9000/#/query?query=select+*+from+AirlinesReviewsKafkaTopic+limit+10&tracing=false&useMSE=false
