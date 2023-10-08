@@ -41,7 +41,7 @@ Para executar o projeto, é necessário instalar as ferramentas listadas na seç
 ## Arquivo de Dados com Massa de Testes
 [Massa de Dados](https://github.com/fxmuld3r/puc_airlines_reviews_sentiment_analysis/tree/main/puc_airlines_reviews_sentiment_analysis/mock/data)
 
-## Paso a Passo de Execução do Projeto
+## Passo a Passo de Execução do Projeto
 
 ### 1) Apache Pinot com Zookeper
 Iniciar o Apache Pinot (o zookeper é carregado automaticamente):
@@ -55,6 +55,10 @@ Iniciar o Apache Kafka (com porta personalizada 9876) embutido no Apache Pinot
 ```sh
 ~/apache-pinot-0.12.0-bin$ sudo bin/pinot-admin.sh  StartKafka -zkAddress=localhost:2123/kafka -port 9876
 ```
-### 3) Incluir Schemas
+### 3) Incluir Schemas e Tabelas no Apache Pinot
 Utilizar a [API do Pinot](http://localhost:9000/help) para incluir [Schemas do Pinot](https://github.com/fxmuld3r/puc_airlines_reviews_sentiment_analysis/blob/main/puc_airlines_reviews_sentiment_analysis/settings/schemas_pinot.txt) de dados referentes às mensagens que serão armazenadas nos tópicos Kafka 
+Incluir [Realtime Tables](http://localhost:9000/#/tables) via interface web do Pinot apontadas para o broker "localhost:9876", com os seguintes nomes:
+- AirlinesReviewsKafkaTopic para o tópico "airlines-reviews-kafka-topic'";
+- AirlinesReviewsTransformatedKafkaTopic para o tópico "airlines-reviews-transformed-kafka-topic";
+- AirlinesReviewsSentimentAnalisysKafkaTopic para o tópico "airlines-reviews-sentiment-analysis-kafka-topic'";
 
