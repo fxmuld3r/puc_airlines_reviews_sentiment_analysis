@@ -103,3 +103,16 @@ Quando acionado, o módulo realiza o processamento de linguagem natural através
 ```
 #### 4.2) Consultar Análise de Sentimentos em Avaliações de Voos no Apache Pinot
 http://localhost:9000/#/query?query=select+*+from+AirlinesReviewsSentimentAnalisysKafkaTopic+limit+10&tracing=false&useMSE=false
+
+### 5) Armazenamento de Avaliações Negativas de Voos em Banco de Dados NOSQL
+#### 5.1) Executar MongoDB no Docker
+```sh
+sudo docker start <numero processo MongoDB>
+```
+#### 5.2) Executar Módulo Spark Streaming que consome dados de Análise de Sentimentos das Avaliações de Voos e Armazena em Banco NOSQL
+Quando acionado, o módulo consome os dados do tópico Kafka "airlines-reviews-sentiment-analysis-kafka-topic", filtra avaliações negativas e armazena em fluxo contínuo as mensagens no formato JSON no MongoDB:
+```sh
+~/puc_airlines_reviews_sentiment_analysis/streaming$ python3 airlines_reviews_streaming_sentiment_analysis_ingestion.py
+```
+#### 5.3) Consultar Análise de Sentimentos em Avaliações de Voos no Apache Pinot
+http://localhost:9000/#/query?query=select+*+from+AirlinesReviewsSentimentAnalisysKafkaTopic+limit+10&tracing=false&useMSE=false
