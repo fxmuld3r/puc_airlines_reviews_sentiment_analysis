@@ -56,7 +56,5 @@ Iniciar o Apache Kafka (com porta personalizada 9876) embutido no Apache Pinot
 ~/apache-pinot-0.12.0-bin$ sudo bin/pinot-admin.sh  StartKafka -zkAddress=localhost:2123/kafka -port 9876
 ```
 ### 3) Incluir Schemas
-Utilizar a [API do Pinot](http://localhost:9000/help) para incluir o Schemas de dados referentes às mensagens que serão armazenadas nos tópicos Kafka 
-```sh
-~/apache-pinot-0.12.0-bin$ sudo bin/pinot-admin.sh  StartKafka -zkAddress=localhost:2123/kafka -port 9876
-```
+Utilizar a [API do Pinot](http://localhost:9000/help) para incluir [Schemas do Pinot](https://github.com/fxmuld3r/puc_airlines_reviews_sentiment_analysis/blob/main/puc_airlines_reviews_sentiment_analysis/settings/schemas_pinot.txt) de dados referentes às mensagens que serão armazenadas nos tópicos Kafka 
+
