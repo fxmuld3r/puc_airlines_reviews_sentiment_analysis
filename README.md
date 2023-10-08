@@ -21,8 +21,8 @@ Construção de um fluxo de processamento contínuo de mensagens postadas em div
 [Requirements.txt](https://www.youtube.com/watch?v=KXtxDYEkhag)
 
 ## Tecnologias Utilizadas
-- Apache Airflow 2.1.0;
-- Apache Kafka;
+- Apache Airflow 2.1.0 (Docker);
+- Apache Kafka (embutido no Apache Pinot);
 - Apache Parquet;
 - Apache Pinot 0.12.0;
 - Apache Spark 3.4.1;
@@ -31,7 +31,7 @@ Construção de um fluxo de processamento contínuo de mensagens postadas em div
 - Apache ZooKeeper (embutido no Apache Pinot);
 - Docker 20.10.24;
 - Flask 2.3.2;
-- MongoDB;
+- MongoDB (Docker);
 - Python 3.10.9;
 - TextBlob 0.17.1;
 
@@ -43,16 +43,20 @@ Para executar o projeto, é necessário instalar as ferramentas listadas na seç
 
 ## Paso a Passo de Execução do Projeto
 
-### Apache Pinot com Zookeper
+### 1) Apache Pinot com Zookeper
 Iniciar o Apache Pinot (o zookeper é carregado automaticamente):
 ```sh
 ~/apache-pinot-0.12.0-bin$ bin/quick-start-streaming.sh
 ```
 A interface do Pinot pode ser acessa através do link:  http://localhost:9000
 
-### Apache Kafka no Pinot
+### 2) Apache Kafka no Pinot
 Iniciar o Apache Kafka (com porta personalizada 9876) embutido no Apache Pinot
 ```sh
 ~/apache-pinot-0.12.0-bin$ sudo bin/pinot-admin.sh  StartKafka -zkAddress=localhost:2123/kafka -port 9876
 ```
-
+### 3) Incluir Schemas
+Utilizar a [API do Pinot](http://localhost:9000/help) para incluir o Schemas de dados referentes às mensagens que serão armazenadas nos tópicos Kafka 
+```sh
+~/apache-pinot-0.12.0-bin$ sudo bin/pinot-admin.sh  StartKafka -zkAddress=localhost:2123/kafka -port 9876
+```
