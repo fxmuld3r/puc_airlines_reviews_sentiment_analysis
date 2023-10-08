@@ -127,7 +127,7 @@ Iniciar API que fornece dados de Avaliações Negativas:
 ~/puc_airlines_reviews_sentiment_analysis/api$ python3 airlines_reviews_negatives_api.py
 ```
 Consultar API com avaliações negativas (porta 5002), como exemplos:
-http://127.0.0.1:5002/negatives-reviews?selected_airline=TurkishFly
-http://127.0.0.1:5002/negatives-reviews?selected_airline=TurkishFly&fligth_date=2022-07-25
-http://127.0.0.1:5002/negatives-reviews?selected_airline=TurkishFly&flight_date=2022-07-25
-<br />
+- http://127.0.0.1:5002/negatives-reviews?selected_airline=TurkishFly
+- http://127.0.0.1:5002/negatives-reviews?selected_airline=TurkishFly&fligth_date=2022-07-25
+- http://127.0.0.1:5002/negatives-reviews?selected_airline=TurkishFly&flight_date=2022-07-25
+___
