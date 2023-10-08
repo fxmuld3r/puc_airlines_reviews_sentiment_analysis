@@ -37,7 +37,7 @@ Construção de um fluxo de processamento contínuo de mensagens postadas em div
 
 ## Instalação
 Para executar o projeto, é necessário instalar as ferramentas listadas na seção acima, conforme versões detalhadas.
-
+___
 ## Arquivo de Dados com Massa de Testes
 [Massa de Dados](https://github.com/fxmuld3r/puc_airlines_reviews_sentiment_analysis/tree/main/puc_airlines_reviews_sentiment_analysis/mock/data)
 <br />
@@ -63,7 +63,7 @@ Incluir [Realtime Tables](http://localhost:9000/#/tables) via interface web do P
 - AirlinesReviewsKafkaTopic para o tópico "airlines-reviews-kafka-topic";
 - AirlinesReviewsTransformatedKafkaTopic para o tópico "airlines-reviews-transformed-kafka-topic";
 - AirlinesReviewsSentimentAnalisysKafkaTopic para o tópico "airlines-reviews-sentiment-analysis-kafka-topic";
-<br />
+___
 ### 2) Ingestão de Dados
 #### 2.1) Executar API de Mock de Dados de Testes (porta 5000)
 Quando acionada, a API realiza a leitura de dados do arquivo de massa de dados (CSV) e aciona a API de Ingestão de Dados:
