@@ -28,7 +28,7 @@ Construção de um fluxo de processamento contínuo de mensagens postadas em div
 - Apache Spark 3.4.1;
 - Apache Spark Streaming 3.4.1;
 - Apache Superset;
-- Apache ZooKeeper;
+- Apache ZooKeeper (embutido no Apache Pinot);
 - Docker 20.10.24;
 - Flask 2.3.2;
 - MongoDB;
@@ -41,10 +41,18 @@ Para executar o projeto, é necessário instalar as ferramentas listadas na seç
 ## Arquivo de Dados com Massa de Testes
 [Massa de Dados](https://github.com/fxmuld3r/puc_airlines_reviews_sentiment_analysis/tree/main/puc_airlines_reviews_sentiment_analysis/mock/data)
 
-## Execução do Projeto
+## Paso a Passo de Execução do Projeto
 
 ### Apache Pinot com Zookeper
+Iniciar o Apache Pinot (o zookeper é carregado automaticamente):
 ```sh
-Rodar Apache Pinot (o zookeper automaticamente):
 ~/apache-pinot-0.12.0-bin$ bin/quick-start-streaming.sh
 ```
+A interface do Pinot pode ser acessa através do link:  http://localhost:9000
+
+### Apache Kafka no Pinot
+Iniciar o Apache Kafka (com porta personalizada 9876) embutido no Apache Pinot
+```sh
+~/apache-pinot-0.12.0-bin$ sudo bin/pinot-admin.sh  StartKafka -zkAddress=localhost:2123/kafka -port 9876
+```
+
