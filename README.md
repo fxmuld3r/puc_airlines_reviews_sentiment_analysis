@@ -63,20 +63,20 @@ Incluir [Realtime Tables](http://localhost:9000/#/tables) via interface web do P
 - AirlinesReviewsKafkaTopic para o tópico "airlines-reviews-kafka-topic";
 - AirlinesReviewsTransformatedKafkaTopic para o tópico "airlines-reviews-transformed-kafka-topic";
 - AirlinesReviewsSentimentAnalisysKafkaTopic para o tópico "airlines-reviews-sentiment-analysis-kafka-topic";
-- <br />
+<br />
 ### 2) Ingestão de Dados
-#### 2.1) Executar API de Mock de Dados de Testes  (porta 5000)
-Quando acionada a API realiza a leitura de dados do arquivo de massa de dados (CSV) e aciona a API de Ingestão de Dados:
+#### 2.1) Executar API de Mock de Dados de Testes (porta 5000)
+Quando acionada, a API realiza a leitura de dados do arquivo de massa de dados (CSV) e aciona a API de Ingestão de Dados:
 ```sh
 ~/puc_airlines_reviews_sentiment_analysis/mock$ python3 airlines_reviews_api_data_mock.py
 ```
-#### 2.2) Executar API de Ingestão de Avaliações de Viagens  (porta 5001)
+#### 2.2) Executar API de Ingestão de Avaliações de Viagens (porta 5001)
 Quando acionada, a API recepciona Avaliações de Viagens e armazena (JSON) as mensagens no tópico Kafka "airlines-reviews-kafka-topic":
 ```sh
 ~/puc_airlines_reviews_sentiment_analysis/api$ python3 airlines_reviews_api_data_ingestion.py
 ```
 #### 2.3) Executar Scheduler para Mock de Dados de Testes
-O sheduler aciona a API de mock de dados para acionar a API de Ingestão:
+O scheduler aciona a API de mock de dados, sendo que a mesma aciona a API de Ingestão:
 ```sh
 ~/puc_airlines_reviews_sentiment_analysis/mock$ python3 airlines_reviews_mock_scheduler.py
 ```
