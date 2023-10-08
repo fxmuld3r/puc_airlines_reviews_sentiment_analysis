@@ -42,7 +42,7 @@ Para executar o projeto, é necessário instalar as ferramentas listadas na seç
 [Massa de Dados](https://github.com/fxmuld3r/puc_airlines_reviews_sentiment_analysis/tree/main/puc_airlines_reviews_sentiment_analysis/mock/data)
 
 ## Passo a Passo de Execução do Projeto
-
+Seguem os passos para execução do projeto em ambiente Linux:
 ### 1) Iniciar e Configurar Ferramentas de Ingestão de Dados
 #### 1.1) Iniciar Apache Pinot com Zookeper
 Iniciar o Apache Pinot (o zookeper é carregado automaticamente):
@@ -61,7 +61,7 @@ Utilizar a [API do Pinot](http://localhost:9000/help) para incluir [Schemas do P
 Incluir [Realtime Tables](http://localhost:9000/#/tables) via interface web do Pinot apontadas para o broker "localhost:9876", com os seguintes nomes:
 - AirlinesReviewsKafkaTopic para o tópico "airlines-reviews-kafka-topic";
 - AirlinesReviewsTransformatedKafkaTopic para o tópico "airlines-reviews-transformed-kafka-topic";
-- AirlinesReviewsSentimentAnalisysKafkaTopic para o tópico "airlines-reviews-sentiment-analysis-kafka-topic'";
+- AirlinesReviewsSentimentAnalisysKafkaTopic para o tópico "airlines-reviews-sentiment-analysis-kafka-topic";
 ### 2) Ingestão de Dados
 #### 2.1) Executar API de Mock de Dados de Testes  (porta 5000)
 Quando acionada a API realiza a leitura de dados do arquivo de massa de dados (CSV) e aciona a API de Ingestão de Dados:
@@ -95,3 +95,11 @@ pública do Google Translate.
 ```
 #### 3.2) Consultar Avaliações de Voos Transformadas no Apache Pinot
 http://localhost:9000/#/query?query=select+*+from+AirlinesReviewsTransformatedKafkaTopic+limit+10&tracing=false&useMSE=false
+### 4) Análise de Sentimento (Machine Learning)
+#### 4.1) Executar Módulo Spark Streaming para Análise de Sentimentos das Avaliações de Voos
+Quando acionado, o módulo realiza o processamento de linguagem natural através de processo de Machine Learning. O resultado com análise de polaridade e subjetividade são armazenandos no tópico "airlines-reviews-sentiment-analysis-kafka-topic" em formato JSON:
+```sh
+~/puc_airlines_reviews_sentiment_analysis/streaming$ python3 airlines_reviews_streaming_sentiment_analysis.py
+```
+#### 4.2) Consultar Análise de Sentimentos em Avaliações de Voos no Apache Pinot
+http://localhost:9000/#/query?query=select+*+from+AirlinesReviewsSentimentAnalisysKafkaTopic+limit+10&tracing=false&useMSE=false
